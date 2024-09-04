@@ -73,6 +73,16 @@ $ cd connectkit
 $ yarn install
 ```
 
+Make sure you have the connectkit-fork.git changes (this is the maintained package so you can pull it in other projects)
+```sh
+$ cd ./packages/connectkit
+$ git init -b main
+$ git remote add origin https://github.com/skhetcho/connectkit-fork.git
+$ git fetch origin
+$ git reset --hard origin/main
+
+```
+
 and start the code bundler:
 
 ```sh

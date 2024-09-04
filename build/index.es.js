@@ -321,9 +321,7 @@ const walletConfigs = {
             ios: 'https://apps.apple.com/app/argent/id1358741926',
         },
         getWalletConnectDeeplink: (uri) => {
-            return isAndroid()
-                ? uri
-                : `https://argent.link/app/wc?uri=${encodeURIComponent(uri)}`;
+            return `https://argent.link/app/wc?uri=${encodeURIComponent(uri)}`;
         },
     },
     'coinbaseWallet, coinbaseWalletSDK': {
@@ -361,6 +359,15 @@ const walletConfigs = {
     'com.crypto.wallet': {
         name: 'Crypto.com',
         shortName: 'Crypto',
+        icon: jsx(Logos.Crypto, {}),
+        iconConnector: jsx(Logos.Crypto, {}),
+        iconShouldShrink: true,
+        downloadUrls: {
+            download: 'https://crypto.com/',
+            website: 'https://crypto.com/en/wallet.html',
+            android: 'https://play.google.com/store/apps/details?id=co.mona.android',
+            ios: 'https://apps.apple.com/app/crypto-com-bitcoin-wallet/id1262148500',
+        },
     },
     dawn: {
         name: 'Dawn Wallet',
@@ -382,9 +389,7 @@ const walletConfigs = {
             ios: 'https://family.co/download',
         },
         getWalletConnectDeeplink: (uri) => {
-            return isAndroid()
-                ? uri
-                : `familywallet://wc?uri=${encodeURIComponent(uri)}`;
+            return `familywallet://wc?uri=${encodeURIComponent(uri)}`;
         },
     },
     frame: {
@@ -412,7 +417,7 @@ const walletConfigs = {
             chrome: 'https://chrome.google.com/webstore/detail/frontier-wallet/kppfdiipphfccemcignhifpjkapfbihd',
         },
         getWalletConnectDeeplink: (uri) => {
-            return isAndroid() ? uri : `frontier://wc?uri=${encodeURIComponent(uri)}`;
+            return `frontier://wc?uri=${encodeURIComponent(uri)}`;
         },
     },
     injected: {
@@ -437,13 +442,31 @@ const walletConfigs = {
         },
         getWalletConnectDeeplink: (uri) => {
             return isAndroid()
-                ? uri
+                ? `metamask://wc?uri=${encodeURIComponent(uri)}`
                 : `https://metamask.app.link/wc?uri=${encodeURIComponent(uri)}`;
         },
     },
-    'app.phantom': {
+    'app.phantom, phantom': {
         name: 'Phantom',
         iconShape: 'squircle',
+        icon: jsx(Logos.Phantom, {}),
+        iconConnector: jsx(Logos.Phantom, {}),
+        iconShouldShrink: true,
+        getWalletConnectDeeplink: (uri) => {
+            return isAndroid()
+                ? `phantom://wc?uri=${encodeURIComponent(uri)}`
+                : `https://phantom.app/wc?uri=${encodeURIComponent(uri)}`;
+        },
+        downloadUrls: {
+            download: 'https://phantom.app',
+            website: 'https://phantom.app/download',
+            android: 'https://play.google.com/store/apps/details?id=app.phantom',
+            ios: 'https://apps.apple.com/us/app/phantom-crypto-wallet/id1598432977',
+            firefox: 'https://addons.mozilla.org/en-US/firefox/addon/phantom-app/',
+            chrome: 'https://chromewebstore.google.com/detail/bfnaelmomeimhlpmgjnjophhpkkoljpa?hl=en',
+            brave: 'https://chromewebstore.google.com/detail/phantom/bfnaelmomeimhlpmgjnjophhpkkoljpa',
+            edge: 'https://chromewebstore.google.com/detail/phantom/bfnaelmomeimhlpmgjnjophhpkkoljpa'
+        },
     },
     'me.rainbow': {
         name: 'Rainbow Wallet',
@@ -460,9 +483,7 @@ const walletConfigs = {
             brave: 'https://rainbow.me/extension?utm_source=connectkit',
         },
         getWalletConnectDeeplink: (uri) => {
-            return isAndroid()
-                ? uri
-                : `https://rnbwapp.com/wc?uri=${encodeURIComponent(uri)}&connector=connectkit`;
+            return `https://rnbwapp.com/wc?uri=${encodeURIComponent(uri)}&connector=connectkit`;
         },
     },
     'io.rabby': {
@@ -483,9 +504,7 @@ const walletConfigs = {
             android: 'https://play.google.com/store/apps/details?id=io.gnosis.safe',
         },
         getWalletConnectDeeplink: (uri) => {
-            return isAndroid()
-                ? uri
-                : `https://gnosis-safe.io/wc?uri=${encodeURIComponent(uri)}`;
+            return `https://gnosis-safe.io/wc?uri=${encodeURIComponent(uri)}`;
         },
     },
     'xyz.talisman': {
@@ -499,10 +518,11 @@ const walletConfigs = {
             firefox: 'https://addons.mozilla.org/en-US/firefox/addon/talisman-wallet-extension/',
         },
     },
-    'com.trustwallet.app': {
+    'com.trustwallet.app, trustWallet': {
         name: 'Trust Wallet',
         shortName: 'Trust',
         icon: jsx(Logos.Trust, {}),
+        iconConnector: jsx(Logos.Trust, {}),
         iconShouldShrink: true,
         downloadUrls: {
             download: 'https://connect.family.co/v0/download/trust',
@@ -511,7 +531,7 @@ const walletConfigs = {
         },
         getWalletConnectDeeplink(uri) {
             return isAndroid()
-                ? uri
+                ? `trust://wc?uri=${encodeURIComponent(uri)}`
                 : `https://link.trustwallet.com/wc?uri=${encodeURIComponent(uri)}`;
         },
     },
@@ -549,9 +569,7 @@ const walletConfigs = {
             android: 'https://play.google.com/store/apps/details?id=io.horizontalsystems.bankwallet',
         },
         getWalletConnectDeeplink: (uri) => {
-            return isAndroid()
-                ? uri
-                : `https://unstoppable.money/wc?uri=${encodeURIComponent(uri)}`;
+            return `https://unstoppable.money/wc?uri=${encodeURIComponent(uri)}`;
         },
     },
     onto: {
@@ -595,9 +613,7 @@ const walletConfigs = {
             ios: 'https://apps.apple.com/app/ledger-live-web3-wallet/id1361671700',
         },
         getWalletConnectDeeplink: (uri) => {
-            return isAndroid()
-                ? uri
-                : `ledgerlive://wc?uri=${encodeURIComponent(uri)}`;
+            return `ledgerlive://wc?uri=${encodeURIComponent(uri)}`;
         },
         shouldDeeplinkDesktop: true,
     },
@@ -611,9 +627,7 @@ const walletConfigs = {
             website: 'https://zerion.io/',
         },
         getWalletConnectDeeplink: (uri) => {
-            return isAndroid()
-                ? uri
-                : `https://app.zerion.io/wc?uri=${encodeURIComponent(uri)}`;
+            return `https://app.zerion.io/wc?uri=${encodeURIComponent(uri)}`;
         },
     },
     slope: {
@@ -627,9 +641,7 @@ const walletConfigs = {
             website: 'https://slope.finance/',
         },
         getWalletConnectDeeplink: (uri) => {
-            return isAndroid()
-                ? uri
-                : `https://slope.finance/app/wc?uri=${encodeURIComponent(uri)}`;
+            return `https://slope.finance/app/wc?uri=${encodeURIComponent(uri)}`;
         },
     },
     tokenPocket: {
@@ -1776,7 +1788,7 @@ const globalsDark = css `
 // TODO: Think more about how to reset our components as to not be affected by external stylings
 // TODO: Merge theme objects instead of overriding
 let mode = 'auto';
-const ResetContainer = styled(motion.div) `
+const ResetContainer = styled(motion.div).withConfig({ displayName: "ResetContainer", componentId: "-m94loe" }) `
   ${themes.default}
 
   ${(props) => {
@@ -1946,7 +1958,7 @@ var defaultTheme = {
     mobileWidth: 560,
 };
 
-const ErrorMessage = styled(motion.div) `
+const ErrorMessage = styled(motion.div).withConfig({ displayName: "ErrorMessage", componentId: "-t1x4qe" }) `
   z-index: -1;
   pointer-events: auto;
   position: absolute;
@@ -2001,12 +2013,12 @@ const FadeOutScaleDown = keyframes `
 from { opacity: 1; transform: scale(1); }
   to { opacity: 0; transform: scale(0.85); }
 `;
-const PageContent = styled(motion.div) `
+const PageContent = styled(motion.div).withConfig({ displayName: "PageContent", componentId: "-1dzce7l" }) `
   max-width: 100%;
   width: 295px;
   padding-top: 48px;
 `;
-const TextWithHr = styled(motion.div) `
+const TextWithHr = styled(motion.div).withConfig({ displayName: "TextWithHr", componentId: "-axhkqt" }) `
   user-select: none;
   position: relative;
   display: block;
@@ -2038,7 +2050,7 @@ const TextWithHr = styled(motion.div) `
     box-shadow: var(--ck-body-divider-box-shadow);
   }
 `;
-const ModalHeading = styled(motion.div) `
+const ModalHeading = styled(motion.div).withConfig({ displayName: "ModalHeading", componentId: "-78q1a5" }) `
   z-index: 3;
   pointer-events: none;
   user-select: none;
@@ -2060,11 +2072,11 @@ const ModalHeading = styled(motion.div) `
     display: inline-block;
   }
 `;
-const ModalContentContainer = styled(motion.div) `
+const ModalContentContainer = styled(motion.div).withConfig({ displayName: "ModalContentContainer", componentId: "-9s61pe" }) `
   position: relative;
   padding: 0;
 `;
-const ModalContent = styled(motion.div) `
+const ModalContent = styled(motion.div).withConfig({ displayName: "ModalContent", componentId: "-1fsssap" }) `
   left: 0;
   right: 0;
   text-align: center;
@@ -2077,7 +2089,7 @@ const ModalContent = styled(motion.div) `
     display: block;
   }
 `;
-const ModalH1 = styled(motion.h1) `
+const ModalH1 = styled(motion.h1).withConfig({ displayName: "ModalH1", componentId: "-ndsha3" }) `
   margin: 0;
   padding: 0;
   line-height: ${(props) => (props.$small ? 20 : 22)}px;
@@ -2102,7 +2114,7 @@ const ModalH1 = styled(motion.h1) `
     font-size: 17px;
   }
 `;
-const ModalBody = styled.div `
+const ModalBody = styled.div.withConfig({ displayName: "ModalBody", componentId: "-1iqkg6k" }) `
   font-size: 16px;
   font-weight: 400;
   line-height: 21px;
@@ -2112,7 +2124,7 @@ const ModalBody = styled.div `
     color: var(--ck-body-color);
   }
 `;
-styled.div `
+styled.div.withConfig({ displayName: "ModalBodySmall", componentId: "-kgh1ec" }) `
   padding: 0 12px;
   font-size: 13px;
   font-weight: 400;
@@ -2123,7 +2135,7 @@ styled.div `
     color: var(--ck-body-color);
   }
 `;
-const BackgroundOverlay = styled(motion.div) `
+const BackgroundOverlay = styled(motion.div).withConfig({ displayName: "BackgroundOverlay", componentId: "-1rgybje" }) `
   z-index: 1;
   position: absolute;
   top: 0;
@@ -2154,7 +2166,7 @@ const MobileBoxOut = keyframes `
   from { opacity: 1; }
   to { opacity: 0; }
 `;
-const BoxContainer = styled(motion.div) `
+const BoxContainer = styled(motion.div).withConfig({ displayName: "BoxContainer", componentId: "-vlyx0h" }) `
   z-index: 2;
   position: relative;
   color: var(--ck-body-color);
@@ -2200,7 +2212,7 @@ const BoxContainer = styled(motion.div) `
     }
   }
 `;
-const ControllerContainer = styled(motion.div) `
+const ControllerContainer = styled(motion.div).withConfig({ displayName: "ControllerContainer", componentId: "-x1ihla" }) `
   z-index: 3;
   position: absolute;
   top: 0;
@@ -2213,7 +2225,7 @@ const ControllerContainer = styled(motion.div) `
   pointer-events: auto;
   //border-bottom: 1px solid var(--ck-body-divider);
 `;
-const InnerContainer$1 = styled(motion.div) `
+const InnerContainer$1 = styled(motion.div).withConfig({ displayName: "InnerContainer", componentId: "-n8ori0" }) `
   position: relative;
   overflow: hidden;
   height: var(--height);
@@ -2223,7 +2235,7 @@ const InnerContainer$1 = styled(motion.div) `
     /* animation-delay: 34ms; */
   }
 `;
-const PageContainer = styled(motion.div) `
+const PageContainer = styled(motion.div).withConfig({ displayName: "PageContainer", componentId: "-y9czpd" }) `
   z-index: 2;
   position: relative;
   top: 0;
@@ -2285,18 +2297,18 @@ const PageContainer = styled(motion.div) `
     }
   }
 `;
-const PageContents = styled(motion.div) `
+const PageContents = styled(motion.div).withConfig({ displayName: "PageContents", componentId: "-1f64d1f" }) `
   margin: 0 auto;
   width: fit-content;
   padding: 29px 24px 24px;
   backface-visibility: hidden;
 `;
-const ModalContainer = styled.div `
+const ModalContainer = styled.div.withConfig({ displayName: "ModalContainer", componentId: "-n765mu" }) `
   z-index: 2147483646; // z-index set one below max (2147483647) for if we wish to layer things ontop of the modal in a seperate Portal
   position: fixed;
   inset: 0;
 `;
-const CloseButton = styled(motion.button) `
+const CloseButton = styled(motion.button).withConfig({ displayName: "CloseButton", componentId: "-3u59o" }) `
   z-index: 3;
   cursor: pointer;
   position: absolute;
@@ -2325,7 +2337,7 @@ const CloseButton = styled(motion.button) `
     transform: scale(0.9);
   }
 `;
-const SiweButton = styled(motion.button) `
+const SiweButton = styled(motion.button).withConfig({ displayName: "SiweButton", componentId: "-1kw21wv" }) `
   z-index: 3;
   position: absolute;
   inset: 0;
@@ -2355,7 +2367,7 @@ const SiweButton = styled(motion.button) `
     }
   }
 `;
-const BackButton = styled(motion.button) `
+const BackButton = styled(motion.button).withConfig({ displayName: "BackButton", componentId: "-cywvig" }) `
   z-index: 3;
   position: absolute;
   inset: 0;
@@ -2386,7 +2398,7 @@ const BackButton = styled(motion.button) `
     }
   }
 `;
-const InfoButton = styled(motion.button) `
+const InfoButton = styled(motion.button).withConfig({ displayName: "InfoButton", componentId: "-xm2kgi" }) `
   z-index: 3;
   position: absolute;
   inset: 0;
@@ -2416,7 +2428,7 @@ const InfoButton = styled(motion.button) `
     }
   }
 `;
-const Container$7 = styled(motion.div) `
+const Container$7 = styled(motion.div).withConfig({ displayName: "Container", componentId: "-3f9y08" }) `
   --ease: cubic-bezier(0.25, 0.1, 0.25, 1);
   --duration: 200ms;
   --transition: height var(--duration) var(--ease),
@@ -2501,7 +2513,7 @@ const Container$7 = styled(motion.div) `
     }
   }
 `;
-const Disclaimer = styled(motion.div) `
+const Disclaimer = styled(motion.div).withConfig({ displayName: "Disclaimer", componentId: "-g4noxi" }) `
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2528,7 +2540,7 @@ const Disclaimer = styled(motion.div) `
     padding: 20px 42px 22px 42px;
   }
 `;
-const DisclaimerBackground = styled(motion.div) `
+const DisclaimerBackground = styled(motion.div).withConfig({ displayName: "DisclaimerBackground", componentId: "-l5955f" }) `
   pointer-events: all;
   z-index: 9;
   position: absolute;
@@ -2559,7 +2571,7 @@ const DisclaimerBackground = styled(motion.div) `
     border-radius: 0;
   }
 `;
-const SignInTooltip = styled(motion.div) `
+const SignInTooltip = styled(motion.div).withConfig({ displayName: "SignInTooltip", componentId: "-v6p8zl" }) `
   z-index: 2;
   position: absolute;
   top: 100%;
@@ -4857,7 +4869,7 @@ const OrDivider = ({ children }) => {
     return (jsx(TextWithHr, { children: jsx("span", { children: children !== null && children !== void 0 ? children : locales.or }) }));
 };
 
-const Graphic = styled(motion.div) `
+const Graphic = styled(motion.div).withConfig({ displayName: "Graphic", componentId: "-g8u4mc" }) `
   position: relative;
   margin: 16px auto 20px;
   height: 190px;
@@ -4870,7 +4882,7 @@ const Graphic = styled(motion.div) `
     margin-bottom: 32px;
   }
 `;
-const LogoGroup = styled(motion.div) `
+const LogoGroup = styled(motion.div).withConfig({ displayName: "LogoGroup", componentId: "-bfp6g" }) `
   position: absolute;
   inset: 0;
   z-index: 2;
@@ -4885,7 +4897,7 @@ const graphicIn = keyframes `
     transform:none;
   }
 `;
-const GraphicBackground = styled(motion.div) `
+const GraphicBackground = styled(motion.div).withConfig({ displayName: "GraphicBackground", componentId: "-19zycug" }) `
   z-index: 1;
   position: absolute;
   inset: 0;
@@ -4923,16 +4935,16 @@ const logoIn = keyframes `
     transform:none;
   }
 `;
-const LogoPosition = styled(motion.div) `
+const LogoPosition = styled(motion.div).withConfig({ displayName: "LogoPosition", componentId: "-127o1li" }) `
   position: absolute;
   inset: 0;
   animation: cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite both;
   animation-delay: inherit;
 `;
-const LogoInner = styled(motion.div) `
+const LogoInner = styled(motion.div).withConfig({ displayName: "LogoInner", componentId: "-1xms8b7" }) `
   position: absolute;
 `;
-const LogoGraphic = styled(motion.div) `
+const LogoGraphic = styled(motion.div).withConfig({ displayName: "LogoGraphic", componentId: "-1mf8e3k" }) `
   position: relative;
   overflow: hidden;
   height: 58px;
@@ -4950,7 +4962,7 @@ const float = keyframes `
   0%,100%{ transform:none; }
   50%{ transform: translateY(-10%) }
 `;
-const FloatWrapper = styled(motion.div) `
+const FloatWrapper = styled(motion.div).withConfig({ displayName: "FloatWrapper", componentId: "-1mlo9em" }) `
   position: relative;
   animation: cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite both;
   animation-name: ${float};
@@ -4960,13 +4972,13 @@ const rotate = keyframes `
   0%,100%{ transform:rotate(-3deg); }
   50%{ transform:rotate(3deg); }
 `;
-const RotateWrapper = styled(motion.div) `
+const RotateWrapper = styled(motion.div).withConfig({ displayName: "RotateWrapper", componentId: "-ajijuh" }) `
   position: relative;
   animation: cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite both;
   animation-name: ${rotate};
   animation-duration: 3200ms;
 `;
-const Logo$2 = styled(motion.div) `
+const Logo$2 = styled(motion.div).withConfig({ displayName: "Logo", componentId: "-18lzgo" }) `
   position: absolute;
   inset: 0;
 
@@ -5024,7 +5036,7 @@ const Logo$2 = styled(motion.div) `
 
 var wave = (jsxs("svg", { "aria-hidden": "true", width: "298", height: "188", viewBox: "0 0 298 188", fill: "none", xmlns: "http://www.w3.org/2000/svg", children: [jsx("path", { d: "M1 55.2757L21.6438 46.0285C55.5896 30.8228 94.4104 30.8228 128.356 46.0286L169.644 64.5229C203.59 79.7287 242.41 79.7286 276.356 64.5229L297 55.2757M1 44.2118L21.6438 34.9646C55.5896 19.7589 94.4104 19.7589 128.356 34.9646L169.644 53.459C203.59 68.6647 242.41 68.6647 276.356 53.459L297 44.2118M1 33.1477L21.6438 23.9005C55.5896 8.69479 94.4104 8.69479 128.356 23.9005L169.644 42.3949C203.59 57.6006 242.41 57.6006 276.356 42.3949L297 33.1477M1 22.1477L21.6438 12.9005C55.5896 -2.30521 94.4104 -2.30521 128.356 12.9005L169.644 31.3949C203.59 46.6006 242.41 46.6006 276.356 31.3949L297 22.1477M1 66.3398L21.6438 57.0926C55.5896 41.8869 94.4104 41.8869 128.356 57.0926L169.644 75.587C203.59 90.7927 242.41 90.7927 276.356 75.587L297 66.3398M1 77.404L21.6438 68.1568C55.5896 52.9511 94.4104 52.9511 128.356 68.1569L169.644 86.6512C203.59 101.857 242.41 101.857 276.356 86.6512L297 77.404M1 88.4681L21.6438 79.2209C55.5896 64.0152 94.4104 64.0152 128.356 79.2209L169.644 97.7153C203.59 112.921 242.41 112.921 276.356 97.7153L297 88.4681M1 121.66L21.6438 112.413C55.5896 97.2075 94.4104 97.2075 128.356 112.413L169.644 130.908C203.59 146.113 242.41 146.113 276.356 130.908L297 121.66M1 110.596L21.6438 101.349C55.5896 86.1433 94.4104 86.1433 128.356 101.349L169.644 119.843C203.59 135.049 242.41 135.049 276.356 119.843L297 110.596M1 99.5321L21.6438 90.2849C55.5896 75.0792 94.4104 75.0792 128.356 90.2849L169.644 108.779C203.59 123.985 242.41 123.985 276.356 108.779L297 99.5321M1 132.724L21.6438 123.477C55.5896 108.271 94.4104 108.271 128.356 123.477L169.644 141.971C203.59 157.177 242.41 157.177 276.356 141.971L297 132.724M1 143.788L21.6438 134.541C55.5896 119.336 94.4104 119.336 128.356 134.541L169.644 153.036C203.59 168.241 242.41 168.241 276.356 153.036L297 143.788M1 154.853L21.6438 145.605C55.5896 130.4 94.4104 130.4 128.356 145.605L169.644 164.1C203.59 179.305 242.41 179.305 276.356 164.1L297 154.853M1 165.853L21.6438 156.605C55.5896 141.4 94.4104 141.4 128.356 156.605L169.644 175.1C203.59 190.305 242.41 190.305 276.356 175.1L297 165.853", stroke: "url(#paint0_linear_1094_2077)", strokeOpacity: "0.9", strokeLinecap: "round", strokeLinejoin: "round" }), jsx("defs", { children: jsxs("linearGradient", { id: "paint0_linear_1094_2077", x1: "1", y1: "112.587", x2: "297.034", y2: "79.6111", gradientUnits: "userSpaceOnUse", children: [jsx("stop", { stopColor: "var(--ck-graphic-wave-stop-01)" }), jsx("stop", { stopColor: "var(--ck-graphic-wave-stop-02)", offset: "0.239583" }), jsx("stop", { stopColor: "var(--ck-graphic-wave-stop-03)", offset: "0.515625" }), jsx("stop", { stopColor: "var(--ck-graphic-wave-stop-04)", offset: "0.739583" }), jsx("stop", { stopColor: "var(--ck-graphic-wave-stop-05)", offset: "1" })] }) })] }));
 
-const SpinnerContainer$3 = styled(motion.div) `
+const SpinnerContainer$3 = styled(motion.div).withConfig({ displayName: "SpinnerContainer", componentId: "-t52jhw" }) `
   position: absolute;
   right: 16px;
   top: 0;
@@ -5033,7 +5045,7 @@ const SpinnerContainer$3 = styled(motion.div) `
   align-items: center;
   justify-content: center;
 `;
-const Arrow = styled.svg `
+const Arrow = styled.svg.withConfig({ displayName: "Arrow", componentId: "-1c7zgvl" }) `
   --x: -3px;
   --stroke-width: 2;
   position: relative;
@@ -5048,34 +5060,34 @@ const Arrow = styled.svg `
   color: currentColor;
   opacity: 0.4;
 `;
-const ArrowChevron = styled.path ``;
-const ArrowLine = styled.line `
+const ArrowChevron = styled.path.withConfig({ displayName: "ArrowChevron", componentId: "-x0xwyo" }) ``;
+const ArrowLine = styled.line.withConfig({ displayName: "ArrowLine", componentId: "-o8fjuu" }) `
   transition: inherit;
   transition-property: transform;
   transform-origin: 90% 50%;
   transform: scaleX(0.1);
 `;
-const DownloadArrow = styled.div `
+const DownloadArrow = styled.div.withConfig({ displayName: "DownloadArrow", componentId: "-1nw4550" }) `
   display: inline-block;
   vertical-align: middle;
   position: relative;
   margin-right: 6px;
   color: currentColor;
 `;
-const DownloadArrowInner = styled.div `
+const DownloadArrowInner = styled.div.withConfig({ displayName: "DownloadArrowInner", componentId: "-1bw93ne" }) `
   transform: rotate(90deg);
   ${Arrow} {
     margin: 0 auto;
   }
 `;
-const ButtonContainerInner = styled(motion.div) `
+const ButtonContainerInner = styled(motion.div).withConfig({ displayName: "ButtonContainerInner", componentId: "-9bma69" }) `
   display: flex;
   align-items: center;
   justify-content: center;
   inset: 0;
   height: 100%;
 `;
-const ButtonContainer$1 = styled.button `
+const ButtonContainer$1 = styled.button.withConfig({ displayName: "ButtonContainer", componentId: "-131vap1" }) `
 
   ${({ disabled }) => disabled &&
     css `
@@ -5268,7 +5280,7 @@ const ButtonContainer$1 = styled.button `
     }
   }
 `;
-const InnerContainer = styled.div `
+const InnerContainer = styled.div.withConfig({ displayName: "InnerContainer", componentId: "-ylymwc" }) `
   transform: translateZ(0); // Shifting fix
   position: relative;
   display: inline-block;
@@ -5280,7 +5292,7 @@ const InnerContainer = styled.div `
   text-overflow: ellipsis;
   */
 `;
-const IconContainer$4 = styled(motion.div) `
+const IconContainer$4 = styled(motion.div).withConfig({ displayName: "IconContainer", componentId: "-15zjly9" }) `
   position: relative;
   display: inline-block;
   vertical-align: middle;
@@ -5312,7 +5324,7 @@ const Spin$1 = keyframes `
   0%{ transform: rotate(0deg); }
   100%{ transform: rotate(360deg); }
 `;
-const SpinnerContainer$2 = styled(motion.div) `
+const SpinnerContainer$2 = styled(motion.div).withConfig({ displayName: "SpinnerContainer", componentId: "-ejg65c" }) `
   display: flex;
   align-items: center;
   justify-content: center;
@@ -5381,7 +5393,7 @@ const Introduction = () => {
 };
 
 const imageHeight = 208;
-const ImageContainer$1 = styled.div `
+const ImageContainer$1 = styled.div.withConfig({ displayName: "ImageContainer", componentId: "-14finad" }) `
   pointer-events: none;
   user-select: none;
   height: ${imageHeight}px;
@@ -5396,8 +5408,8 @@ const ImageContainer$1 = styled.div `
     display: none;
   }
 `;
-const ImageContainerInner = styled(motion.div) ``;
-const MobileImageContainer = styled.div `
+const ImageContainerInner = styled(motion.div).withConfig({ displayName: "ImageContainerInner", componentId: "-a4hzau" }) ``;
+const MobileImageContainer = styled.div.withConfig({ displayName: "MobileImageContainer", componentId: "-9b678d" }) `
   pointer-events: none;
   user-select: none;
   height: ${imageHeight}px;
@@ -5412,10 +5424,10 @@ const MobileImageContainer = styled.div `
     display: flex;
   }
 `;
-const Slides = styled.div `
+const Slides = styled.div.withConfig({ displayName: "Slides", componentId: "-1uj92cb" }) `
   position: relative;
 `;
-const Slide = styled(motion.div) `
+const Slide = styled(motion.div).withConfig({ displayName: "Slide", componentId: "-1brfyq5" }) `
   scroll-snap-type: x mandatory;
   position: relative;
   bottom: 0;
@@ -5436,7 +5448,7 @@ const Slide = styled(motion.div) `
       transition-delay: 0ms;
     `}
 `;
-const Slider = styled.div `
+const Slider = styled.div.withConfig({ displayName: "Slider", componentId: "-1s0yq8" }) `
   --background: var(--ck-body-background-secondary);
   --background-transparent: var(--ck-body-background-transparent, transparent);
   position: relative;
@@ -5468,14 +5480,14 @@ const Slider = styled.div `
     }
   }
 `;
-const Dots = styled.div `
+const Dots = styled.div.withConfig({ displayName: "Dots", componentId: "-1e0jy75" }) `
   position: relative;
   top: -1px;
   display: flex;
   justify-content: center;
   pointer-events: auto;
 `;
-const Dot = styled.button `
+const Dot = styled.button.withConfig({ displayName: "Dot", componentId: "-3bdcg" }) `
   display: flex;
   align-items: center;
   height: 28px;
@@ -5517,7 +5529,7 @@ const Dot = styled.button `
 
 const pulseAnim = { scale: [0.9, 1.25, 1.6], opacity: [0, 0.11, 0] };
 const pulseTransition = { ease: 'linear', duration: 2, repeat: Infinity };
-const Center = styled.div `
+const Center = styled.div.withConfig({ displayName: "Center", componentId: "-flwjh3" }) `
   position: absolute;
   left: 50%;
   top: 50%;
@@ -5527,7 +5539,7 @@ const spin = keyframes `
   from{ transform: rotate(0deg); }
   to{ transform: rotate(360deg); }
 `;
-const SpinContainer = styled(motion.div) `
+const SpinContainer = styled(motion.div).withConfig({ displayName: "SpinContainer", componentId: "-10b8m52" }) `
   z-index: -1;
   position: absolute;
   inset: 0;
@@ -5535,7 +5547,7 @@ const SpinContainer = styled(motion.div) `
   border-radius: 100%;
   animation: ${spin} 16s linear infinite;
 `;
-const BgLighten = styled(motion.div) `
+const BgLighten = styled(motion.div).withConfig({ displayName: "BgLighten", componentId: "-1ozatiw" }) `
   overflow: hidden;
   border-radius: inherit;
   z-index: 0;
@@ -5543,13 +5555,13 @@ const BgLighten = styled(motion.div) `
   inset: 0;
   background: rgba(255, 255, 255, 0.1);
 `;
-const MainCircle = styled(motion.div) `
+const MainCircle = styled(motion.div).withConfig({ displayName: "MainCircle", componentId: "-1vf67w8" }) `
   z-index: 2;
   position: relative;
   border-radius: 50%;
   background: var(--ck-body-background);
 `;
-const MainCircleInner = styled(motion.div) `
+const MainCircleInner = styled(motion.div).withConfig({ displayName: "MainCircleInner", componentId: "-16puxhr" }) `
   position: absolute;
   inset: 0;
   display: flex;
@@ -5819,7 +5831,7 @@ const Shimmer$1 = keyframes `
   0%{ transform: translate(-100%) rotate(-45deg); }
   100%{ transform: translate(100%) rotate(-80deg); }
 `;
-const InfoBox = styled.div `
+const InfoBox = styled.div.withConfig({ displayName: "InfoBox", componentId: "-6ryfti" }) `
   padding: 24px 24px 28px;
   border-radius: var(--ck-tertiary-border-radius, 24px);
   box-shadow: var(--ck-tertiary-box-shadow, none);
@@ -5828,7 +5840,7 @@ const InfoBox = styled.div `
     max-width: none;
   }
 `;
-const InfoBoxButtons = styled.div `
+const InfoBoxButtons = styled.div.withConfig({ displayName: "InfoBoxButtons", componentId: "-1ooyykd" }) `
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 16px;
@@ -5836,12 +5848,12 @@ const InfoBoxButtons = styled.div `
   button {
   }
 `;
-const LearnMoreContainer = styled(motion.div) `
+const LearnMoreContainer = styled(motion.div).withConfig({ displayName: "LearnMoreContainer", componentId: "-1s3y2lh" }) `
   text-align: center;
   margin-top: 16px;
   margin-bottom: -6px;
 `;
-const LearnMoreButton = styled(motion.button) `
+const LearnMoreButton = styled(motion.button).withConfig({ displayName: "LearnMoreButton", componentId: "-b90xw3" }) `
   appearance: none;
   user-select: none;
   cursor: pointer;
@@ -5893,7 +5905,7 @@ const LearnMoreButton = styled(motion.button) `
     transform: scale(0.96);
   }
 `;
-styled(motion.div) `
+styled(motion.div).withConfig({ displayName: "ConnectorsContainer", componentId: "-159kcw0" }) `
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -5905,7 +5917,7 @@ styled(motion.div) `
     display: none;
   }
 `;
-styled(motion.button) `
+styled(motion.button).withConfig({ displayName: "ConnectorButton", componentId: "-1dzij98" }) `
   cursor: pointer;
   user-select: none;
   position: relative;
@@ -5999,7 +6011,7 @@ styled(motion.button) `
     }
   }
 `;
-styled(motion.span) `
+styled(motion.span).withConfig({ displayName: "ConnectorRecentlyUsed", componentId: "-26ayr6" }) `
   position: relative;
   top: var(--ck-recent-badge-top-offset, 0.5px);
   display: inline-block;
@@ -6044,7 +6056,7 @@ styled(motion.span) `
     animation: ${Shimmer$1} 2s linear infinite;
   }
 `;
-styled(motion.span) `
+styled(motion.span).withConfig({ displayName: "ConnectorLabel", componentId: "-tgm9it" }) `
   display: flex;
   align-items: center;
   gap: 9px;
@@ -6055,7 +6067,7 @@ styled(motion.span) `
   padding: 2px 0;
   padding-right: 38px;
 `;
-styled(motion.div) `
+styled(motion.div).withConfig({ displayName: "ConnectorIcon", componentId: "-lbugsv" }) `
   position: absolute;
   right: 20px;
   width: 32px;
@@ -6081,12 +6093,12 @@ const Shimmer = keyframes `
   0%{ transform: translate(-100%) rotate(-45deg); }
   100%{ transform: translate(100%) rotate(-80deg); }
 `;
-const ConnectorButton = styled(motion.button) `
+const ConnectorButton = styled(motion.button).withConfig({ displayName: "ConnectorButton", componentId: "-xgdc4w" }) `
   display: block;
   text-decoration: none;
 `;
-const ConnectorLabel = styled(motion.span) ``;
-const ConnectorIcon = styled(motion.div) ``;
+const ConnectorLabel = styled(motion.span).withConfig({ displayName: "ConnectorLabel", componentId: "-1gy7y1d" }) ``;
+const ConnectorIcon = styled(motion.div).withConfig({ displayName: "ConnectorIcon", componentId: "-1eeoe1v" }) ``;
 // This is a bit of a hack to not share styles between mobile and desktop
 const styles = {
     desktop: {
@@ -6287,7 +6299,7 @@ const styles = {
     `,
     },
 };
-const RecentlyUsedTag = styled(motion.span) `
+const RecentlyUsedTag = styled(motion.span).withConfig({ displayName: "RecentlyUsedTag", componentId: "-sik95r" }) `
   position: relative;
   top: var(--ck-recent-badge-top-offset, 0.5px);
   display: inline-block;
@@ -6332,7 +6344,7 @@ const RecentlyUsedTag = styled(motion.span) `
     animation: ${Shimmer} 2s linear infinite;
   }
 `;
-const ConnectorsContainer = styled.div `
+const ConnectorsContainer = styled.div.withConfig({ displayName: "ConnectorsContainer", componentId: "-akx49z" }) `
   transition: opacity 300ms ease;
   min-width: fit-content;
 
@@ -6575,14 +6587,14 @@ function useIsMobile() {
     return mobile;
 }
 
-const ScrollContainer = styled.div `
+const ScrollContainer = styled.div.withConfig({ displayName: "ScrollContainer", componentId: "-14mvwac" }) `
   position: relative;
 `;
 const fadeIn = keyframes `
 0%{ opacity:0; }
 100%{ opacity:1; }
 `;
-const MoreIndicator = styled.div `
+const MoreIndicator = styled.div.withConfig({ displayName: "MoreIndicator", componentId: "-vgrrxy" }) `
   z-index: 9;
   position: absolute;
   left: 0;
@@ -6628,7 +6640,7 @@ const MoreIndicator = styled.div `
     pointer-events: none;
   }
 `;
-const ScrollAreaContainer = styled.div `
+const ScrollAreaContainer = styled.div.withConfig({ displayName: "ScrollAreaContainer", componentId: "-1yy7iz5" }) `
   --bg: ${({ $backgroundColor }) => $backgroundColor || 'var(--ck-body-background)'};
   --fade-height: 1px;
   position: relative;
@@ -6790,7 +6802,7 @@ const ScrollArea = ({ children, height, backgroundColor, mobileDirection, }) => 
                 }, children: jsxs("span", { children: [jsx(ArrowDown, {}), " More Available"] }) })] }));
 };
 
-const AlertContainer = styled(motion.div) `
+const AlertContainer = styled(motion.div).withConfig({ displayName: "AlertContainer", componentId: "-1lu886r" }) `
   display: flex;
   gap: 8px;
   position: relative;
@@ -6825,7 +6837,7 @@ const AlertContainer = styled(motion.div) `
       `;
 }}
 `;
-const IconContainer$3 = styled(motion.div) `
+const IconContainer$3 = styled(motion.div).withConfig({ displayName: "IconContainer", componentId: "-91hcqk" }) `
   width: 24px;
   height: 24px;
   display: flex;
@@ -6894,8 +6906,7 @@ const ConnectorItem = ({ wallet, isRecent, }) => {
       })();
     }, [wallet, setReady]);
     */
-    let deeplink = (!wallet.isInstalled && isMobile) ||
-        (wallet.shouldDeeplinkDesktop && !isMobile)
+    let deeplink = (isMobile) || (wallet.shouldDeeplinkDesktop && !isMobile)
         ? (_a = wallet.getWalletConnectDeeplink) === null || _a === void 0 ? void 0 : _a.call(wallet, uri !== null && uri !== void 0 ? uri : '')
         : undefined;
     const redirectToMoreWallets = isMobile && isWalletConnectConnector(wallet.id);
@@ -6928,12 +6939,12 @@ const Wallets = () => {
     return (jsxs(PageContent, { style: { width: 312 }, children: [jsx(ConnectorList, {}), isMobile ? (jsx(Fragment, { children: jsxs(InfoBox, { children: [jsxs(ModalContent, { style: { padding: 0, textAlign: 'left' }, children: [jsx(ModalH1, { "$small": true, children: locales.connectorsScreen_h1 }), jsx(ModalBody, { children: locales.connectorsScreen_p })] }), jsxs(InfoBoxButtons, { children: [!((_a = context.options) === null || _a === void 0 ? void 0 : _a.hideQuestionMarkCTA) && (jsx(Button, { variant: 'tertiary', onClick: () => context.setRoute(routes.ABOUT), children: locales.learnMore })), !((_b = context.options) === null || _b === void 0 ? void 0 : _b.hideNoWalletCTA) && (jsx(Button, { variant: 'tertiary', onClick: () => context.setRoute(routes.ONBOARDING), children: locales.getWallet }))] })] }) })) : (jsx(Fragment, { children: !((_c = context.options) === null || _c === void 0 ? void 0 : _c.hideNoWalletCTA) && (jsx(LearnMoreContainer, { children: jsxs(LearnMoreButton, { onClick: () => context.setRoute(routes.ONBOARDING), children: [jsx(WalletIcon$1, {}), " ", locales.connectorsScreen_newcomer] }) })) })), ((_d = context.options) === null || _d === void 0 ? void 0 : _d.disclaimer) && (jsx(Disclaimer, { style: { visibility: 'hidden', pointerEvents: 'none' }, children: jsx("div", { children: (_e = context.options) === null || _e === void 0 ? void 0 : _e.disclaimer }) }))] }));
 };
 
-const WalletItem = styled.div `
+const WalletItem = styled.div.withConfig({ displayName: "WalletItem", componentId: "-dbyo7d" }) `
   text-align: center;
   transition: opacity 100ms ease;
   opacity: ${(props) => (props.$waiting ? 0.4 : 1)};
 `;
-const WalletIcon = styled.div `
+const WalletIcon = styled.div.withConfig({ displayName: "WalletIcon", componentId: "-a2x6e2" }) `
   z-index: 9;
   position: relative;
   margin: 0 auto 10px;
@@ -6959,7 +6970,7 @@ const WalletIcon = styled.div `
     height: auto;
   }
 `;
-const WalletLabel = styled.div `
+const WalletLabel = styled.div.withConfig({ displayName: "WalletLabel", componentId: "-1m7ahem" }) `
   color: var(--ck-body-color);
   font-size: 13px;
   line-height: 15px;
@@ -6970,7 +6981,7 @@ const PulseKeyframes = keyframes `
   0%,100% { opacity:1; }
   50% { opacity:0.5; }
 `;
-const WalletList = styled.div `
+const WalletList = styled.div.withConfig({ displayName: "WalletList", componentId: "-gl1ejk" }) `
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 22px 8px;
@@ -6986,7 +6997,7 @@ const WalletList = styled.div `
       }
     `}
 `;
-const Container$6 = styled.div ``;
+const Container$6 = styled.div.withConfig({ displayName: "Container", componentId: "-15v91ck" }) ``;
 
 function useWalletConnectModal() {
     const { log } = useContext();
@@ -7030,7 +7041,7 @@ function useWalletConnectModal() {
     };
 }
 
-const IconContainer$2 = styled(motion.div) `
+const IconContainer$2 = styled(motion.div).withConfig({ displayName: "IconContainer", componentId: "-6pm3hg" }) `
   transition: all 220ms cubic-bezier(0.175, 0.885, 0.32, 1.1);
   display: flex;
   align-items: center;
@@ -7093,7 +7104,7 @@ const CopyToClipboardIcon = ({ copied, small, }) => (jsx(IconContainer$2, { "$cl
             opacity: small || copied ? 1 : 0.3,
         } }) }));
 
-const Container$5 = styled.div `
+const Container$5 = styled.div.withConfig({ displayName: "Container", componentId: "-1c8jf2o" }) `
   --color: var(--ck-copytoclipboard-stroke);
   --bg: var(--ck-body-background);
   transition: all 220ms cubic-bezier(0.175, 0.885, 0.32, 1.1);
@@ -7114,7 +7125,7 @@ const Container$5 = styled.div `
           }
         `}
 `;
-const OffsetContainer = styled.div `
+const OffsetContainer = styled.div.withConfig({ displayName: "OffsetContainer", componentId: "-1qg4a1z" }) `
   display: block;
   position: relative;
   transition: inherit;
@@ -7207,7 +7218,7 @@ const MobileConnectors = () => {
                     }, children: jsx(CopyToClipboard, { variant: "button", string: wcUri, children: locales.copyToClipboard }) }))] }) }));
 };
 
-const Content = styled(motion.div) `
+const Content = styled(motion.div).withConfig({ displayName: "Content", componentId: "-jqkq3o" }) `
   display: flex;
   flex-direction: column;
   gap: 6px;
@@ -7231,14 +7242,14 @@ const outlineKeyframes = keyframes `
   0%{ opacity:1; }
   100%{ opacity:0; }
 `;
-const Container$4 = styled(motion.div) `
+const Container$4 = styled(motion.div).withConfig({ displayName: "Container", componentId: "-16rhu9t" }) `
   /*
   background: var(
     --ck-body-background
   ); // To stop the overlay issue during transition for the squircle spinner
   */
 `;
-const ConnectingContainer = styled(motion.div) `
+const ConnectingContainer = styled(motion.div).withConfig({ displayName: "ConnectingContainer", componentId: "-yxf6ew" }) `
   display: flex;
   align-items: center;
   justify-content: center;
@@ -7246,7 +7257,7 @@ const ConnectingContainer = styled(motion.div) `
   height: 120px;
   //transform: scale(1.001); // fixes shifting issue between states
 `;
-const ConnectingAnimation = styled(motion.div) `
+const ConnectingAnimation = styled(motion.div).withConfig({ displayName: "ConnectingAnimation", componentId: "-1sb0gef" }) `
   user-select: none;
   position: relative;
   --spinner-error-opacity: 0;
@@ -7272,7 +7283,7 @@ const ConnectingAnimation = styled(motion.div) `
       }
     `}
 `;
-const RetryButton = styled(motion.button) `
+const RetryButton = styled(motion.button).withConfig({ displayName: "RetryButton", componentId: "-4kquih" }) `
   z-index: 5;
   appearance: none;
   position: absolute;
@@ -7307,7 +7318,7 @@ const RetryButton = styled(motion.button) `
     opacity: 0.1;
   }
 `;
-const RetryIconContainer = styled(motion.div) `
+const RetryIconContainer = styled(motion.div).withConfig({ displayName: "RetryIconContainer", componentId: "-1h3u54c" }) `
   position: absolute;
   inset: 0;
 
@@ -7333,13 +7344,13 @@ const RetryIconContainer = styled(motion.div) `
   }
 `;
 
-const TooltipWindow = styled(motion.div) `
+const TooltipWindow = styled(motion.div).withConfig({ displayName: "TooltipWindow", componentId: "-n5la1p" }) `
   z-index: 2147483647;
   position: fixed;
   inset: 0;
   pointer-events: none;
 `;
-const TooltipContainer = styled(motion.div) `
+const TooltipContainer = styled(motion.div).withConfig({ displayName: "TooltipContainer", componentId: "-1vlx8qi" }) `
   --shadow: var(--ck-tooltip-shadow);
   z-index: 2147483647;
   position: absolute;
@@ -7386,7 +7397,7 @@ const TooltipContainer = styled(motion.div) `
     }
   }
 `;
-const TooltipTail = styled(motion.div) `
+const TooltipTail = styled(motion.div).withConfig({ displayName: "TooltipTail", componentId: "-f8s5d3" }) `
   z-index: 2;
   position: absolute;
   display: flex;
@@ -7495,7 +7506,7 @@ const Tooltip = ({ children, message, open, xOffset = 0, yOffset = 0, delay, }) 
                                 }, children: [message, jsx(TooltipTail, { "$size": size })] }) }) })) }) })] }));
 };
 
-const LogoContainer$4 = styled(motion.div) `
+const LogoContainer$4 = styled(motion.div).withConfig({ displayName: "LogoContainer", componentId: "-82kr8i" }) `
   z-index: 4;
   position: relative;
   overflow: hidden;
@@ -7505,7 +7516,7 @@ const LogoContainer$4 = styled(motion.div) `
     display: block;
   }
 `;
-const Logo$1 = styled(motion.div) `
+const Logo$1 = styled(motion.div).withConfig({ displayName: "Logo", componentId: "-1ic2h6d" }) `
   z-index: 2;
   position: absolute;
   overflow: hidden;
@@ -7520,12 +7531,12 @@ const Logo$1 = styled(motion.div) `
     height: 100%;
   }
 `;
-const SpinnerContainer$1 = styled(motion.div) `
+const SpinnerContainer$1 = styled(motion.div).withConfig({ displayName: "SpinnerContainer", componentId: "-19dfub4" }) `
   position: absolute;
   inset: 1px;
   overflow: hidden;
 `;
-const Spinner$3 = styled(motion.div) `
+const Spinner$3 = styled(motion.div).withConfig({ displayName: "Spinner", componentId: "-1c3l4v1" }) `
   pointer-events: none;
   user-select: none;
   z-index: 1;
@@ -7565,7 +7576,7 @@ const SquircleSpinner = ({ logo, connecting = true, }) => {
                         } }, "Spinner")) }) }), jsxs("svg", { "aria-hidden": "true", width: "102", height: "102", viewBox: "0 0 102 102", fill: "none", children: [jsx("rect", { x: "7.57895", y: "7.57895", width: "86.8421", height: "86.8421", rx: "19.2211", stroke: "black", strokeOpacity: "0.02", strokeWidth: "1.15789" }), jsx("path", { fillRule: "evenodd", clipRule: "evenodd", d: "M0 0H102V102H0V0ZM7 38.284C7 27.5684 7 22.2106 9.01905 18.0892C10.9522 14.1431 14.1431 10.9522 18.0892 9.01905C22.2106 7 27.5684 7 38.284 7H63.716C74.4316 7 79.7894 7 83.9108 9.01905C87.8569 10.9522 91.0478 14.1431 92.9809 18.0892C95 22.2106 95 27.5684 95 38.284V63.716C95 74.4316 95 79.7894 92.9809 83.9108C91.0478 87.8569 87.8569 91.0478 83.9108 92.9809C79.7894 95 74.4316 95 63.716 95H38.284C27.5684 95 22.2106 95 18.0892 92.9809C14.1431 91.0478 10.9522 87.8569 9.01905 83.9108C7 79.7894 7 74.4316 7 63.716V38.284ZM41.5 0.5H41.4325C34.7246 0.499996 29.6023 0.499994 25.5104 0.823325C21.388 1.14906 18.1839 1.80986 15.3416 3.20227C10.0602 5.78959 5.78959 10.0602 3.20227 15.3416C1.80986 18.1839 1.14906 21.388 0.823325 25.5104C0.499994 29.6023 0.499996 34.7246 0.5 41.4325V41.5V55.5938C0.5 55.6808 0.507407 55.766 0.521624 55.849C0.507407 55.9319 0.5 56.0172 0.5 56.1042V60.5V60.5675C0.499996 67.2754 0.499994 72.3977 0.823325 76.4896C1.14906 80.612 1.80986 83.8161 3.20227 86.6584C5.78959 91.9398 10.0602 96.2104 15.3416 98.7977C18.1839 100.19 21.388 100.851 25.5104 101.177C29.6022 101.5 34.7244 101.5 41.432 101.5H41.4324H41.5H43.4227H60.5H60.5675H60.568C67.2756 101.5 72.3977 101.5 76.4896 101.177C80.612 100.851 83.8161 100.19 86.6584 98.7977C91.9398 96.2104 96.2104 91.9398 98.7977 86.6584C100.19 83.8161 100.851 80.612 101.177 76.4896C101.5 72.3978 101.5 67.2756 101.5 60.568V60.5676V60.5V41.5V41.4324V41.432C101.5 34.7244 101.5 29.6022 101.177 25.5104C100.851 21.388 100.19 18.1839 98.7977 15.3416C96.2104 10.0602 91.9398 5.78959 86.6584 3.20227C83.8161 1.80986 80.612 1.14906 76.4896 0.823325C72.3977 0.499994 67.2754 0.499996 60.5675 0.5H60.5H41.5ZM3.5 56.1042C3.5 56.0172 3.49259 55.9319 3.47838 55.849C3.49259 55.766 3.5 55.6808 3.5 55.5938V41.5C3.5 34.7112 3.50109 29.7068 3.814 25.7467C4.1256 21.8032 4.73946 19.0229 5.89635 16.6614C8.19077 11.9779 11.9779 8.19077 16.6614 5.89635C19.0229 4.73946 21.8032 4.1256 25.7467 3.814C29.7068 3.50109 34.7112 3.5 41.5 3.5H60.5C67.2888 3.5 72.2932 3.50109 76.2533 3.814C80.1968 4.1256 82.977 4.73946 85.3386 5.89635C90.022 8.19077 93.8092 11.9779 96.1036 16.6614C97.2605 19.0229 97.8744 21.8032 98.186 25.7467C98.4989 29.7068 98.5 34.7112 98.5 41.5V60.5C98.5 67.2888 98.4989 72.2932 98.186 76.2533C97.8744 80.1968 97.2605 82.9771 96.1036 85.3386C93.8092 90.022 90.022 93.8092 85.3386 96.1036C82.977 97.2605 80.1968 97.8744 76.2533 98.186C72.2932 98.4989 67.2888 98.5 60.5 98.5H43.4227H41.5C34.7112 98.5 29.7068 98.4989 25.7467 98.186C21.8032 97.8744 19.0229 97.2605 16.6614 96.1036C11.9779 93.8092 8.19077 90.022 5.89635 85.3386C4.73946 82.9771 4.1256 80.1968 3.814 76.2533C3.50109 72.2932 3.5 67.2888 3.5 60.5V56.1042Z", fill: "var(--ck-body-background)" })] })] }));
 };
 
-const BrowserIconContainer = styled(motion.div) `
+const BrowserIconContainer = styled(motion.div).withConfig({ displayName: "BrowserIconContainer", componentId: "-a25skm" }) `
   display: flex;
   align-items: center;
   justify-content: center;
@@ -7609,7 +7620,7 @@ const BrowserIcon = React.forwardRef(({ browser }, ref) => {
 });
 BrowserIcon.displayName = 'BrowserIcon';
 
-const LogoContainer$3 = styled(motion.div) `
+const LogoContainer$3 = styled(motion.div).withConfig({ displayName: "LogoContainer", componentId: "-wwnc4q" }) `
   z-index: 4;
   position: relative;
   width: 100px;
@@ -7620,7 +7631,7 @@ const LogoContainer$3 = styled(motion.div) `
     display: block;
   }
 `;
-const Logo = styled(motion.div) `
+const Logo = styled(motion.div).withConfig({ displayName: "Logo", componentId: "-qdg9xp" }) `
   z-index: 2;
   position: absolute;
   overflow: hidden;
@@ -7644,11 +7655,11 @@ const Logo = styled(motion.div) `
       `}
   }
 `;
-const SpinnerContainer = styled(motion.div) `
+const SpinnerContainer = styled(motion.div).withConfig({ displayName: "SpinnerContainer", componentId: "-ogflba" }) `
   position: absolute;
   inset: -5px;
 `;
-const ExpiringSpinner = styled(motion.div) `
+const ExpiringSpinner = styled(motion.div).withConfig({ displayName: "ExpiringSpinner", componentId: "-epb8um" }) `
   pointer-events: none;
   user-select: none;
   z-index: 1;
@@ -7696,7 +7707,7 @@ const ExpiringSpinner = styled(motion.div) `
     }
   }
 `;
-const Spinner$2 = styled(motion.div) `
+const Spinner$2 = styled(motion.div).withConfig({ displayName: "Spinner", componentId: "-1ig1og7" }) `
   pointer-events: none;
   user-select: none;
   z-index: 1;
@@ -7913,7 +7924,7 @@ const ConnectWithInjector = ({ switchConnectMethod, forceState }) => {
                                                 : locales.injectionScreen_connecting_p })] }) }, states$1.CONNECTING)), status === states$1.CONNECTED && (jsx(Content, { initial: 'initial', animate: 'animate', exit: 'exit', variants: contentVariants$1, children: jsxs(ModalContent, { children: [jsxs(ModalH1, { "$valid": true, children: [jsx(TickIcon, {}), " ", locales.injectionScreen_connected_h1] }), jsx(ModalBody, { children: locales.injectionScreen_connected_p })] }) }, states$1.CONNECTED)), status === states$1.NOTCONNECTED && (jsx(Content, { initial: 'initial', animate: 'animate', exit: 'exit', variants: contentVariants$1, children: jsxs(ModalContent, { children: [jsx(ModalH1, { children: locales.injectionScreen_notconnected_h1 }), jsx(ModalBody, { children: locales.injectionScreen_notconnected_p })] }) }, states$1.NOTCONNECTED)), status === states$1.UNAVAILABLE && (jsx(Content, { initial: 'initial', animate: 'animate', exit: 'exit', variants: contentVariants$1, children: !extensionUrl ? (jsxs(Fragment, { children: [jsxs(ModalContent, { style: { paddingBottom: 12 }, children: [jsx(ModalH1, { children: locales.injectionScreen_unavailable_h1 }), jsx(ModalBody, { children: locales.injectionScreen_unavailable_p })] }), !wallet.isInstalled && suggestedExtension && (jsxs(Button, { href: suggestedExtension === null || suggestedExtension === void 0 ? void 0 : suggestedExtension.url, icon: jsx(BrowserIcon, { browser: suggestedExtension === null || suggestedExtension === void 0 ? void 0 : suggestedExtension.name }), children: ["Install on ", suggestedExtension === null || suggestedExtension === void 0 ? void 0 : suggestedExtension.label] }))] })) : (jsxs(Fragment, { children: [jsxs(ModalContent, { style: { paddingBottom: 18 }, children: [jsx(ModalH1, { children: locales.injectionScreen_install_h1 }), jsx(ModalBody, { children: locales.injectionScreen_install_p })] }), !wallet.isInstalled && extensionUrl && (jsx(Button, { href: extensionUrl, icon: jsx(BrowserIcon, {}), children: locales.installTheExtension }))] })) }, states$1.UNAVAILABLE))] }) })] }) }));
 };
 
-const QRCodeContainer = styled(motion.div) `
+const QRCodeContainer = styled(motion.div).withConfig({ displayName: "QRCodeContainer", componentId: "-37l97v" }) `
   z-index: 3;
   position: relative;
   overflow: hidden;
@@ -7934,7 +7945,7 @@ const QRCodeContainer = styled(motion.div) `
     height: auto;
   }
 `;
-const QRCodeContent = styled(motion.div) `
+const QRCodeContent = styled(motion.div).withConfig({ displayName: "QRCodeContent", componentId: "-1mzual1" }) `
   position: absolute;
   inset: 13px;
   svg {
@@ -7946,7 +7957,7 @@ const PlaceholderKeyframes$2 = keyframes `
   0%{ background-position: 100% 0; }
   100%{ background-position: -100% 0; }
 `;
-const QRPlaceholder = styled(motion.div) `
+const QRPlaceholder = styled(motion.div).withConfig({ displayName: "QRPlaceholder", componentId: "-o6q6s8" }) `
   --color: var(--ck-qr-dot-color);
   --bg: var(--ck-qr-background, var(--ck-body-background));
 
@@ -8017,7 +8028,7 @@ const QRPlaceholder = styled(motion.div) `
     animation: ${PlaceholderKeyframes$2} 1000ms linear infinite both;
   }
 `;
-const LogoContainer$2 = styled(motion.div) `
+const LogoContainer$2 = styled(motion.div).withConfig({ displayName: "LogoContainer", componentId: "-1mm4vum" }) `
   z-index: 6;
   position: absolute;
   top: 0;
@@ -8026,7 +8037,7 @@ const LogoContainer$2 = styled(motion.div) `
   height: 100%;
   transform: translateY(50%) scale(0.9999); // Shifting fix
 `;
-const LogoIcon = styled(motion.div) `
+const LogoIcon = styled(motion.div).withConfig({ displayName: "LogoIcon", componentId: "-1p8itn" }) `
   z-index: 6;
   position: absolute;
   left: 50%;
@@ -8157,7 +8168,7 @@ function CustomQRCode({ value, image, imageBackground, imagePosition = 'center',
 }
 CustomQRCode.displayName = 'CustomQRCode';
 
-const IconContainer$1 = styled(motion.div) `
+const IconContainer$1 = styled(motion.div).withConfig({ displayName: "IconContainer", componentId: "-iypofv" }) `
   position: relative;
   display: flex;
   align-items: center;
@@ -8298,33 +8309,33 @@ const DownloadApp = () => {
     return (jsx(PageContent, { children: jsxs(ModalContent, { style: { paddingBottom: 4, gap: 14 }, children: [downloads.redirect && jsx(CustomQRCode, { value: downloads.redirect }), !downloads.redirect && jsx(Fragment, { children: "No download link available" }), jsx(ModalBody, { style: { fontSize: 15, lineHeight: '20px', padding: '0 12px' }, children: bodycopy })] }) }));
 };
 
-const AvatarContainer = styled(motion.div) `
+const AvatarContainer = styled(motion.div).withConfig({ displayName: "AvatarContainer", componentId: "-161zvuq" }) `
   padding: 18px 0 20px;
   @media only screen and (max-width: ${defaultTheme.mobileWidth}px) {
     padding: 16px 0 20px;
   }
 `;
-const AvatarInner = styled(motion.div) `
+const AvatarInner = styled(motion.div).withConfig({ displayName: "AvatarInner", componentId: "-1gyqvc" }) `
   position: relative;
   display: inline-block;
 `;
-const ChainSelectorContainer = styled(motion.div) `
+const ChainSelectorContainer = styled(motion.div).withConfig({ displayName: "ChainSelectorContainer", componentId: "-1lgm44d" }) `
   z-index: 3;
   position: absolute;
   bottom: 0px;
   right: -16px;
 `;
-const BalanceContainer = styled(motion.div) `
+const BalanceContainer = styled(motion.div).withConfig({ displayName: "BalanceContainer", componentId: "-104llp0" }) `
   position: relative;
 `;
-const Balance$1 = styled(motion.div) `
+const Balance$1 = styled(motion.div).withConfig({ displayName: "Balance", componentId: "-8cezr5" }) `
   position: relative;
 `;
 const PlaceholderKeyframes$1 = keyframes `
   0%{ background-position: 100% 0; }
   100%{ background-position: -100% 0; }
 `;
-const LoadingBalance = styled(motion.div) `
+const LoadingBalance = styled(motion.div).withConfig({ displayName: "LoadingBalance", componentId: "-1xihcow" }) `
   width: 25%;
   margin: 0 auto;
   position: relative;
@@ -8357,7 +8368,7 @@ function addressToNumber(address) {
         100) /
         100);
 }
-const EnsAvatar = styled(motion.div) `
+const EnsAvatar = styled(motion.div).withConfig({ displayName: "EnsAvatar", componentId: "-1438iqq" }) `
   will-change: transform; // Needed for Safari
   pointer-events: none;
   user-select: none;
@@ -8391,7 +8402,7 @@ const EnsAvatar = styled(motion.div) `
     }
 }}
 `;
-const ImageContainer = styled(motion.img) `
+const ImageContainer = styled(motion.img).withConfig({ displayName: "ImageContainer", componentId: "-1jryek9" }) `
   display: block;
   position: relative;
   width: 100%;
@@ -8861,7 +8872,7 @@ const chainConfigs = [
     },
 ];
 
-const SwitchNetworksContainer = styled.div `
+const SwitchNetworksContainer = styled.div.withConfig({ displayName: "SwitchNetworksContainer", componentId: "-1a3t5e8" }) `
   display: flex;
   flex-direction: column;
 
@@ -8869,7 +8880,7 @@ const SwitchNetworksContainer = styled.div `
     flex-direction: column-reverse;
   }
 `;
-const ChainIcon = styled(motion.div) `
+const ChainIcon = styled(motion.div).withConfig({ displayName: "ChainIcon", componentId: "-1v18zpj" }) `
   display: block;
   position: relative;
   border-radius: 12px;
@@ -8905,10 +8916,10 @@ const ChainIcon = styled(motion.div) `
     height: 32px;
   }
 `;
-const ChainLogoContainer = styled(motion.div) `
+const ChainLogoContainer = styled(motion.div).withConfig({ displayName: "ChainLogoContainer", componentId: "-t7c8b0" }) `
   position: relative;
 `;
-const ChainLogoSpinner = styled(motion.div) `
+const ChainLogoSpinner = styled(motion.div).withConfig({ displayName: "ChainLogoSpinner", componentId: "-1d01mr5" }) `
   position: absolute;
   inset: -6px;
   animation: rotateSpinner 1200ms linear infinite;
@@ -8929,7 +8940,7 @@ const ChainLogoSpinner = styled(motion.div) `
     }
   }
 `;
-const ChainButtonContainer = styled.div `
+const ChainButtonContainer = styled.div.withConfig({ displayName: "ChainButtonContainer", componentId: "-1jenrn6" }) `
   position: relative;
   margin: -8px -8px;
   &:after {
@@ -8943,7 +8954,7 @@ const ChainButtonContainer = styled.div `
       inset 0 -16px 8px -12px var(--background, var(--ck-body-background));
   }
 `;
-const ChainButtons = styled(motion.div) `
+const ChainButtons = styled(motion.div).withConfig({ displayName: "ChainButtons", componentId: "-7u29bk" }) `
   padding: 8px;
   overflow-x: hidden;
   overflow-y: auto;
@@ -8961,7 +8972,7 @@ const ChainButtons = styled(motion.div) `
     max-height: 60vh;
   }
 `;
-const ChainButton = styled(motion.button) `
+const ChainButton = styled(motion.button).withConfig({ displayName: "ChainButton", componentId: "-17tt0za" }) `
   appearance: none;
   cursor: pointer;
   user-select: none;
@@ -9043,7 +9054,7 @@ const ChainButton = styled(motion.button) `
       }
     `}
 `;
-const ChainButtonStatus = styled(motion.div) `
+const ChainButtonStatus = styled(motion.div).withConfig({ displayName: "ChainButtonStatus", componentId: "-13pq2in" }) `
   position: absolute;
   top: 0;
   bottom: 0;
@@ -9066,7 +9077,7 @@ const ChainButtonStatus = styled(motion.div) `
     padding: 0;
   }
 `;
-const ChainButtonBg = styled(motion.div) `
+const ChainButtonBg = styled(motion.div).withConfig({ displayName: "ChainButtonBg", componentId: "-68bjen" }) `
   position: absolute;
   z-index: -1;
   inset: 0 var(--ck-dropdown-active-inset, -8px);
@@ -9173,16 +9184,16 @@ const ChainSelectList = ({ variant, }) => {
                     }, onAnimationStart: triggerResize, onAnimationComplete: triggerResize, children: jsx("div", { style: { paddingTop: 10, paddingBottom: 8 }, children: jsxs(Alert, { children: [locales.warnings_walletSwitchingUnsupported, ' ', locales.warnings_walletSwitchingUnsupportedResolve] }) }) })) })] }));
 };
 
-const DropdownWindow = styled(motion.div) `
+const DropdownWindow = styled(motion.div).withConfig({ displayName: "DropdownWindow", componentId: "-1n43vxk" }) `
   z-index: 2147483647;
   position: fixed;
   inset: 0;
 `;
-const DropdownOverlay = styled(motion.div) `
+const DropdownOverlay = styled(motion.div).withConfig({ displayName: "DropdownOverlay", componentId: "-y7aos5" }) `
   position: absolute;
   inset: 0;
 `;
-const DropdownContainer = styled(motion.div) `
+const DropdownContainer = styled(motion.div).withConfig({ displayName: "DropdownContainer", componentId: "-e1hiwn" }) `
   --shadow: 0px 2px 15px rgba(0, 0, 0, 0.15);
   --background: var(--ck-dropdown-background, var(--ck-tooltip-background));
   --border-radius: var(
@@ -9206,7 +9217,7 @@ const DropdownContainer = styled(motion.div) `
   );
   border-radius: var(--border-radius);
 `;
-const DropdownHeading = styled(motion.div) `
+const DropdownHeading = styled(motion.div).withConfig({ displayName: "DropdownHeading", componentId: "-1q7oqoi" }) `
   padding: 0 0 6px;
   font-size: 14px;
   line-height: 20px;
@@ -9367,7 +9378,7 @@ const ChainSelectDropdown = ({ children, open, onClose, offsetX = 0, offsetY = 8
                                         }, children: [jsx(DropdownHeading, { children: locales.switchNetworks }), jsx(ChainSelectList, {})] })] }) }) }) })) })] }));
 };
 
-const ChainContainer = styled.div `
+const ChainContainer = styled.div.withConfig({ displayName: "ChainContainer", componentId: "-1qkwyzp" }) `
   --bg: transparent;
   --color: #333;
   ${(props) => typeof props.size === 'string'
@@ -9407,7 +9418,7 @@ const ChainContainer = styled.div `
     justify-content: center;
   }
 `;
-const LogoContainer$1 = styled(motion.div) `
+const LogoContainer$1 = styled(motion.div).withConfig({ displayName: "LogoContainer", componentId: "-47eeah" }) `
   display: block;
   position: absolute;
   inset: 0;
@@ -9427,7 +9438,7 @@ const Spin = keyframes `
   0%{ transform: rotate(0deg); }
   100%{ transform: rotate(360deg); }
 `;
-const LoadingContainer = styled(motion.div) `
+const LoadingContainer = styled(motion.div).withConfig({ displayName: "LoadingContainer", componentId: "-6sqlli" }) `
   position: absolute;
   inset: 0;
   animation: ${Spin} 1s linear infinite;
@@ -9437,7 +9448,7 @@ const LoadingContainer = styled(motion.div) `
     inset: 0;
   }
 `;
-const Unsupported = styled(motion.div) `
+const Unsupported = styled(motion.div).withConfig({ displayName: "Unsupported", componentId: "-1nl5n6z" }) `
   z-index: 2;
   position: absolute;
   top: 0;
@@ -9470,8 +9481,8 @@ const Chain = ({ id, unsupported: controlledUnsupported, radius = '50%', size = 
     return (jsx(ChainContainer, { size: size, radius: radius, children: jsxs(AnimatePresence, { initial: false, children: [unsupported && (jsx(Unsupported, { initial: { opacity: 0 }, animate: { opacity: 1 }, exit: { opacity: 0 }, children: jsxs("svg", { width: "13", height: "12", viewBox: "0 0 13 12", fill: "none", xmlns: "http://www.w3.org/2000/svg", children: [jsx("path", { d: "M2.61317 11.2501H9.46246C10.6009 11.2501 11.3256 10.3506 11.3256 9.3549C11.3256 9.05145 11.255 8.73244 11.0881 8.43303L7.65903 2.14708C7.659 2.14702 7.65897 2.14696 7.65893 2.1469C7.65889 2.14682 7.65884 2.14673 7.65879 2.14664C7.31045 1.50746 6.6741 1.17871 6.04 1.17871C5.41478 1.17871 4.763 1.50043 4.41518 2.14968L0.993416 8.43476C0.828865 8.72426 0.75 9.04297 0.75 9.3549C0.75 10.3506 1.47471 11.2501 2.61317 11.2501Z", fill: "currentColor", stroke: "var(--ck-body-background, #fff)", strokeWidth: "1.5" }), jsx("path", { d: "M6.03258 7.43916C5.77502 7.43916 5.63096 7.29153 5.62223 7.02311L5.55675 4.96973C5.54802 4.69684 5.74446 4.5 6.02821 4.5C6.3076 4.5 6.51277 4.70131 6.50404 4.9742L6.43856 7.01864C6.42546 7.29153 6.2814 7.43916 6.03258 7.43916ZM6.03258 9.11676C5.7401 9.11676 5.5 8.9065 5.5 8.60677C5.5 8.30704 5.7401 8.09678 6.03258 8.09678C6.32506 8.09678 6.56515 8.30256 6.56515 8.60677C6.56515 8.91097 6.32069 9.11676 6.03258 9.11676Z", fill: "white" })] }) })), id ? (jsx(LogoContainer$1, { initial: { opacity: 0 }, animate: { opacity: 1 }, exit: { opacity: 0 }, transition: { duration: 0.3 }, children: (_a = chain === null || chain === void 0 ? void 0 : chain.logo) !== null && _a !== void 0 ? _a : jsx(Chains.UnknownChain, {}) }, `${chain === null || chain === void 0 ? void 0 : chain.id}-${chain === null || chain === void 0 ? void 0 : chain.name}-${id}`)) : (jsx(LoadingContainer, { initial: { opacity: 0 }, animate: { opacity: 1 }, exit: { opacity: 0 }, transition: { duration: 0.3 }, children: Spinner }, "loading"))] }) }));
 };
 
-const Container$3 = styled(motion.div) ``;
-const SwitchChainButton = styled(motion.button) `
+const Container$3 = styled(motion.div).withConfig({ displayName: "Container", componentId: "-cy0zs7" }) ``;
+const SwitchChainButton = styled(motion.button).withConfig({ displayName: "SwitchChainButton", componentId: "-w531i" }) `
   --color: var(
     --ck-dropdown-button-color,
     var(--ck-button-primary-color, var(--ck-body-color))
@@ -9654,7 +9665,7 @@ const lineKeyframes = keyframes `
   from{ background-position: 0 0; }
   to{ background-position: 100% 0; }
 `;
-const ContentContainer = styled.div `
+const ContentContainer = styled.div.withConfig({ displayName: "ContentContainer", componentId: "-19d3muv" }) `
   @media only screen and (max-width: ${defaultTheme.mobileWidth}px) {
     margin: 5px auto 24px;
     padding: 16px 16px;
@@ -9663,7 +9674,7 @@ const ContentContainer = styled.div `
     background: var(--ck-body-background-tertiary);
   }
 `;
-const LogoContainer = styled(motion.div) `
+const LogoContainer = styled(motion.div).withConfig({ displayName: "LogoContainer", componentId: "-54pw2i" }) `
   z-index: 2;
   overflow: hidden;
   position: relative;
@@ -9687,7 +9698,7 @@ const LogoContainer = styled(motion.div) `
     height: 64px;
   }
 `;
-const StatusIcon = styled(motion.div) `
+const StatusIcon = styled(motion.div).withConfig({ displayName: "StatusIcon", componentId: "-3ml5g7" }) `
   z-index: 2;
   position: relative;
   display: flex;
@@ -9735,7 +9746,7 @@ const StatusIcon = styled(motion.div) `
     }
   }
 `;
-const StatusGraphicBgSvg = styled(motion.svg) `
+const StatusGraphicBgSvg = styled(motion.svg).withConfig({ displayName: "StatusGraphicBgSvg", componentId: "-e9j2o3" }) `
   display: block;
   position: relative;
   margin: 0 auto;
@@ -9749,7 +9760,7 @@ const StatusGraphicBgSvg = styled(motion.svg) `
     display: none;
   }
 `;
-const StatusGraphic = styled(motion.div) `
+const StatusGraphic = styled(motion.div).withConfig({ displayName: "StatusGraphic", componentId: "-1wfeemu" }) `
   --border-color: var(--ck-siwe-border, var(--ck-body-divider));
   --border-size: 0;
   --border-style: dashed;
@@ -10370,7 +10381,7 @@ const useModal = ({ onConnect, onDisconnect } = {}) => {
     };
 };
 
-const TextContainer = styled(motion.div) `
+const TextContainer = styled(motion.div).withConfig({ displayName: "TextContainer", componentId: "-1n8z5h6" }) `
   top: 0;
   bottom: 0;
   left: 0;
@@ -10379,7 +10390,7 @@ const TextContainer = styled(motion.div) `
   justify-content: center;
   white-space: nowrap;
 `;
-styled(motion.div) `
+styled(motion.div).withConfig({ displayName: "ChainContainer", componentId: "-brnjif" }) `
   position: relative;
   width: 24px;
   height: 24px;
@@ -10389,7 +10400,7 @@ styled(motion.div) `
     display: block;
   }
 `;
-const IconContainer = styled(motion.div) `
+const IconContainer = styled(motion.div).withConfig({ displayName: "IconContainer", componentId: "-10lx057" }) `
   pointer-events: none;
   user-select: none;
   position: relative;
@@ -10397,7 +10408,7 @@ const IconContainer = styled(motion.div) `
   height: 24px;
   margin-right: 8px;
 `;
-const UnsupportedNetworkContainer = styled(motion.div) `
+const UnsupportedNetworkContainer = styled(motion.div).withConfig({ displayName: "UnsupportedNetworkContainer", componentId: "-qf95th" }) `
   z-index: 1;
   position: absolute;
   inset: 0;
@@ -10415,7 +10426,7 @@ const UnsupportedNetworkContainer = styled(motion.div) `
   }
 `;
 
-const Container$2 = styled(motion.div) `
+const Container$2 = styled(motion.div).withConfig({ displayName: "Container", componentId: "-10v1rxb" }) `
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -10510,7 +10521,7 @@ const Container$2 = styled(motion.div) `
     );
   }
 `;
-const ThemeContainer = styled.button `
+const ThemeContainer = styled.button.withConfig({ displayName: "ThemeContainer", componentId: "-rdj3rw" }) `
   all: initial;
   appearance: none;
   user-select: none;
@@ -10580,7 +10591,7 @@ const ThemedButton = ({ children, variant = 'primary', autoSize = true, duration
             }, children: children }) }));
 };
 
-const Container$1 = styled(motion.div) `
+const Container$1 = styled(motion.div).withConfig({ displayName: "Container", componentId: "-1hftib0" }) `
   display: flex;
   align-items: center;
   justify-content: center;
@@ -10590,7 +10601,7 @@ const PlaceholderKeyframes = keyframes `
   0%,100%{ opacity: 0.1; transform: scale(0.75); }
   50%{ opacity: 0.75; transform: scale(1.2) }
 `;
-const PulseContainer = styled.div `
+const PulseContainer = styled.div.withConfig({ displayName: "PulseContainer", componentId: "-vqfyn" }) `
   pointer-events: none;
   user-select: none;
   padding: 0 5px;
@@ -10873,7 +10884,7 @@ const cursorIn = keyframes `
   85%{ transform:translate(25%,-20%) scale(0.9); }
   100%{ transform:translate(25%,-20%) scale(1); opacity:1; }
 `;
-const Cursor = styled.div `
+const Cursor = styled.div.withConfig({ displayName: "Cursor", componentId: "-a3yerj" }) `
   z-index: 2;
   position: absolute;
   top: 50%;
@@ -10888,7 +10899,7 @@ const Cursor = styled.div `
     animation: ${cursorIn} 1300ms 200ms cubic-bezier(0.16, 1, 0.6, 1) both;
   }
 `;
-const Container = styled.div `
+const Container = styled.div.withConfig({ displayName: "Container", componentId: "-5w81sm" }) `
   z-index: 1;
   position: absolute;
   inset: 0;
@@ -10896,7 +10907,7 @@ const Container = styled.div `
     animation: ${shake} 300ms 100ms cubic-bezier(0.16, 1, 0.6, 1) both;
   }
 `;
-const ButtonContainer = styled.div `
+const ButtonContainer = styled.div.withConfig({ displayName: "ButtonContainer", componentId: "-ae9sjl" }) `
   z-index: 1;
   position: absolute;
   inset: 0;
@@ -11032,4 +11043,3 @@ const ConnectModal = ({ theme = 'auto', customTheme = customThemeDefault, lang =
 const CONNECTKIT_VERSION = '1.8.2';
 
 export { Avatar, CONNECTKIT_VERSION, Chain as ChainIcon, ConnectKitButton, ConnectModal as ConnectKitModalDemo, ConnectKitProvider, Context, SIWEButtonComponent as SIWEButton, SIWEProvider, SIWE_NONCE_QUERY_KEY, SIWE_SESSION_QUERY_KEY, types as Types, defaultConfig as getDefaultConfig, defaultConnectors as getDefaultConnectors, useChainIsSupported, useChains, useIsMounted, useModal, useSIWE, wallets };
-//# sourceMappingURL=index.es.js.map

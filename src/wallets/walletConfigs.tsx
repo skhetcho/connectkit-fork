@@ -60,9 +60,7 @@ export const walletConfigs: {
       ios: 'https://apps.apple.com/app/argent/id1358741926',
     },
     getWalletConnectDeeplink: (uri: string) => {
-      return isAndroid()
-        ? uri
-        : `https://argent.link/app/wc?uri=${encodeURIComponent(uri)}`;
+      return `https://argent.link/app/wc?uri=${encodeURIComponent(uri)}`;
     },
   },
   'coinbaseWallet, coinbaseWalletSDK': {
@@ -102,6 +100,16 @@ export const walletConfigs: {
   'com.crypto.wallet': {
     name: 'Crypto.com',
     shortName: 'Crypto',
+    icon: <Logos.Crypto />,
+    iconConnector: <Logos.Crypto />,
+    iconShouldShrink: true,
+    downloadUrls: {
+      download: 'https://crypto.com/',
+      website: 'https://crypto.com/en/wallet.html',
+      android:
+        'https://play.google.com/store/apps/details?id=co.mona.android',
+      ios: 'https://apps.apple.com/app/crypto-com-bitcoin-wallet/id1262148500',
+    },
   },
   dawn: {
     name: 'Dawn Wallet',
@@ -124,9 +132,7 @@ export const walletConfigs: {
       ios: 'https://family.co/download',
     },
     getWalletConnectDeeplink: (uri: string) => {
-      return isAndroid()
-        ? uri
-        : `familywallet://wc?uri=${encodeURIComponent(uri)}`;
+      return `familywallet://wc?uri=${encodeURIComponent(uri)}`;
     },
   },
   frame: {
@@ -158,7 +164,7 @@ export const walletConfigs: {
         'https://chrome.google.com/webstore/detail/frontier-wallet/kppfdiipphfccemcignhifpjkapfbihd',
     },
     getWalletConnectDeeplink: (uri: string) => {
-      return isAndroid() ? uri : `frontier://wc?uri=${encodeURIComponent(uri)}`;
+      return `frontier://wc?uri=${encodeURIComponent(uri)}`;
     },
   },
   injected: {
@@ -185,13 +191,31 @@ export const walletConfigs: {
     },
     getWalletConnectDeeplink: (uri: string) => {
       return isAndroid()
-        ? uri
+        ? `metamask://wc?uri=${encodeURIComponent(uri)}`
         : `https://metamask.app.link/wc?uri=${encodeURIComponent(uri)}`;
     },
   },
-  'app.phantom': {
+  'app.phantom, phantom': {
     name: 'Phantom',
     iconShape: 'squircle',
+    icon: <Logos.Phantom />,
+    iconConnector: <Logos.Phantom />,
+    iconShouldShrink: true,
+    getWalletConnectDeeplink: (uri: string) => {
+      return isAndroid()
+        ? `phantom://wc?uri=${encodeURIComponent(uri)}`
+        : `https://phantom.app/wc?uri=${encodeURIComponent(uri)}`;
+    },
+    downloadUrls: {
+      download: 'https://phantom.app',
+      website: 'https://phantom.app/download',
+      android: 'https://play.google.com/store/apps/details?id=app.phantom',
+      ios: 'https://apps.apple.com/us/app/phantom-crypto-wallet/id1598432977',
+      firefox: 'https://addons.mozilla.org/en-US/firefox/addon/phantom-app/',
+      chrome: 'https://chromewebstore.google.com/detail/bfnaelmomeimhlpmgjnjophhpkkoljpa?hl=en',
+      brave: 'https://chromewebstore.google.com/detail/phantom/bfnaelmomeimhlpmgjnjophhpkkoljpa',
+      edge: 'https://chromewebstore.google.com/detail/phantom/bfnaelmomeimhlpmgjnjophhpkkoljpa'
+    },
   },
   'me.rainbow': {
     name: 'Rainbow Wallet',
@@ -209,11 +233,9 @@ export const walletConfigs: {
       brave: 'https://rainbow.me/extension?utm_source=connectkit',
     },
     getWalletConnectDeeplink: (uri: string) => {
-      return isAndroid()
-        ? uri
-        : `https://rnbwapp.com/wc?uri=${encodeURIComponent(
-            uri
-          )}&connector=connectkit`;
+      return `https://rnbwapp.com/wc?uri=${encodeURIComponent(
+        uri
+      )}&connector=connectkit`;
     },
   },
   'io.rabby': {
@@ -235,9 +257,7 @@ export const walletConfigs: {
       android: 'https://play.google.com/store/apps/details?id=io.gnosis.safe',
     },
     getWalletConnectDeeplink: (uri: string) => {
-      return isAndroid()
-        ? uri
-        : `https://gnosis-safe.io/wc?uri=${encodeURIComponent(uri)}`;
+      return `https://gnosis-safe.io/wc?uri=${encodeURIComponent(uri)}`;
     },
   },
   'xyz.talisman': {
@@ -253,10 +273,11 @@ export const walletConfigs: {
         'https://addons.mozilla.org/en-US/firefox/addon/talisman-wallet-extension/',
     },
   },
-  'com.trustwallet.app': {
+  'com.trustwallet.app, trustWallet': {
     name: 'Trust Wallet',
     shortName: 'Trust',
     icon: <Logos.Trust />,
+    iconConnector: <Logos.Trust />,
     iconShouldShrink: true,
     downloadUrls: {
       download: 'https://connect.family.co/v0/download/trust',
@@ -266,7 +287,7 @@ export const walletConfigs: {
     },
     getWalletConnectDeeplink(uri) {
       return isAndroid()
-        ? uri
+        ? `trust://wc?uri=${encodeURIComponent(uri)}`
         : `https://link.trustwallet.com/wc?uri=${encodeURIComponent(uri)}`;
     },
   },
@@ -305,9 +326,7 @@ export const walletConfigs: {
         'https://play.google.com/store/apps/details?id=io.horizontalsystems.bankwallet',
     },
     getWalletConnectDeeplink: (uri: string) => {
-      return isAndroid()
-        ? uri
-        : `https://unstoppable.money/wc?uri=${encodeURIComponent(uri)}`;
+      return `https://unstoppable.money/wc?uri=${encodeURIComponent(uri)}`;
     },
   },
   onto: {
@@ -353,9 +372,7 @@ export const walletConfigs: {
       ios: 'https://apps.apple.com/app/ledger-live-web3-wallet/id1361671700',
     },
     getWalletConnectDeeplink: (uri: string) => {
-      return isAndroid()
-        ? uri
-        : `ledgerlive://wc?uri=${encodeURIComponent(uri)}`;
+      return `ledgerlive://wc?uri=${encodeURIComponent(uri)}`;
     },
     shouldDeeplinkDesktop: true,
   },
@@ -370,9 +387,7 @@ export const walletConfigs: {
       website: 'https://zerion.io/',
     },
     getWalletConnectDeeplink: (uri: string) => {
-      return isAndroid()
-        ? uri
-        : `https://app.zerion.io/wc?uri=${encodeURIComponent(uri)}`;
+      return `https://app.zerion.io/wc?uri=${encodeURIComponent(uri)}`;
     },
   },
   slope: {
@@ -387,9 +402,7 @@ export const walletConfigs: {
       website: 'https://slope.finance/',
     },
     getWalletConnectDeeplink: (uri: string) => {
-      return isAndroid()
-        ? uri
-        : `https://slope.finance/app/wc?uri=${encodeURIComponent(uri)}`;
+      return `https://slope.finance/app/wc?uri=${encodeURIComponent(uri)}`;
     },
   },
   tokenPocket: {

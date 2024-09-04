@@ -96,11 +96,9 @@ const ConnectorItem = ({
   }, [wallet, setReady]);
   */
 
-  let deeplink =
-    (!wallet.isInstalled && isMobile) ||
-      (wallet.shouldDeeplinkDesktop && !isMobile)
-      ? wallet.getWalletConnectDeeplink?.(uri ?? '')
-      : undefined;
+  let deeplink = (isMobile) || (wallet.shouldDeeplinkDesktop && !isMobile)
+    ? wallet.getWalletConnectDeeplink?.(uri ?? '')
+    : undefined;
 
   const redirectToMoreWallets = isMobile && isWalletConnectConnector(wallet.id);
   // Safari requires opening popup on user gesture, so we connect immediately here
